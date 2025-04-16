@@ -9,9 +9,6 @@ type ShortcutEditorProps = {
 
 const ShortcutEditor = ({ showEditor, setShowEditor }: ShortcutEditorProps) => {
 	const context = useContext(SettingsContext);
-	if (!context) {
-		return null;
-	}
 
 	const { setShortcut } = context;
 
@@ -47,7 +44,7 @@ const ShortcutEditor = ({ showEditor, setShowEditor }: ShortcutEditorProps) => {
 
 	return (
 		<div
-			className="fixed top-0 left-0 flex items-center justify-center h-screen w-screen bg-black/30 z-40"
+			className="fixed top-0 left-0 flex items-center justify-center h-screen w-screen bg-black/30 z-40 touch-none"
 			onClick={() => setShowEditor(false)}
 		>
 			<div

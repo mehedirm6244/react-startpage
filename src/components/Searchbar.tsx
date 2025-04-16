@@ -4,9 +4,6 @@ import { SettingsContext } from '../SettingsContext';
 
 const Searchbar = () => {
 	const context = useContext(SettingsContext);
-	if (!context) {
-		return null;
-	}
 
 	const { searchbarProps } = context;
 	const {
@@ -34,7 +31,7 @@ const Searchbar = () => {
 	return (
 		<>
 			<form action={searchUrl} method="GET">
-				<div className="bg-gray-300 focus-within:bg-gray-100 text-gray-700 shadow-lg focus-within:shadow-none duration-100 px-3 py-2.5 rounded-full flex flex-row gap-1.5">
+				<div className="bg-gray-300 focus-within:bg-gray-100 text-gray-700 shadow-lg focus-within:shadow-none duration-100 px-3 py-2.5 rounded-full inline-flex gap-1.5">
 
 					<div className="overflow-hidden drop-shadow">
 						<img src={getFaviconUrl(searchUrl)} className="h-6"/>
@@ -44,9 +41,9 @@ const Searchbar = () => {
 						name="q"
 						type="search"
 						aria-label="Search"
-						className="w-80 pl-2.5 pr-1.5"
-						autoFocus={!!autoFocus}
-						autoComplete={!!autoComplete ? 'on' : 'off'}
+						className="w-44 sm:w-64 md:w-80 pl-2.5 pr-1.5"
+						autoFocus={autoFocus}
+						autoComplete={autoComplete ? 'on' : 'off'}
 					/>
 
 					{/* Search Icon */}

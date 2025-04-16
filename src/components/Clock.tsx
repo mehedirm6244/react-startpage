@@ -4,11 +4,11 @@ import { SettingsContext } from '../SettingsContext';
 const getTime = ({useAM, useSeconds} : {useAM: boolean, useSeconds: boolean}) => {
 	const date = new Date();
 	let hrs = date.getHours();
-	let mins = date.getMinutes();
-	let secs = date.getSeconds();
+	const mins = date.getMinutes();
+	const secs = date.getSeconds();
 
 	let ampm = '';
-	if (!!useAM) {
+	if (useAM) {
 		ampm = (hrs >= 12? 'PM' : 'AM');
 		hrs %= 12;
 		if (!hrs) {
@@ -33,11 +33,7 @@ const getTime = ({useAM, useSeconds} : {useAM: boolean, useSeconds: boolean}) =>
 
 const Clock = () => {
 	const context = useContext(SettingsContext);
-	let [time, setTime] = useState('');
-
-	if (!context) {
-		return null;
-	}
+	const [time, setTime] = useState('');
 
 	const { clockProps } = context;
 	const { enableClock, useSeconds, useAM } = clockProps;

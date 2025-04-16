@@ -8,9 +8,6 @@ import ShortcutItem from './ShortcutItem';
 
 const ShortcutBar = () => {
 	const context = useContext(SettingsContext);
-	if (!context) {
-		return null;
-	}
 
 	const { shortcuts, setShortcut, shortcutBarProps } = context;
 	const { enableShortcuts, enableEdit } = shortcutBarProps;
@@ -28,7 +25,7 @@ const ShortcutBar = () => {
 						{ !!enableEdit &&
 							<div
 								className="absolute z-10 -top-1 -right-1 bg-red-500 hover:bg-red-400 text-gray-100 p-1 rounded-full duration-100 active:scale-90"
-								onClick={() => setShortcut((prev: Shortcut[]) => prev.filter((_:any, idx: number) => idx !== i))}
+								onClick={() => setShortcut((prev: Shortcut[]) => prev.filter((_: Shortcut, idx: number) => idx !== i))}
 							>
 								<Minus size={16} />
 							</div>

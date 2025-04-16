@@ -11,9 +11,6 @@ type SettingsPanelProps = {
 
 const SettingsPanel = ({visible, setVisible} : SettingsPanelProps) => {
 	const context = useContext(SettingsContext);
-	if (!context) {
-		return null;
-	}
 
 	const {
 		clockProps,
@@ -23,13 +20,6 @@ const SettingsPanel = ({visible, setVisible} : SettingsPanelProps) => {
 		shortcutBarProps,
 		setShortcutBarProp
 	} = context;
-
-	const handleToggle = (setter: Function, prop: string) => (value: boolean) => {
-		setter((prev: any) => ({
-			...prev,
-			[prop]: value ? 1 : 0
-		}))
-	};
 
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
@@ -45,13 +35,13 @@ const SettingsPanel = ({visible, setVisible} : SettingsPanelProps) => {
 		return () => {
 			window.removeEventListener('keydown', handleKeyDown);
 		};
-	}, [visible]);
+	}, [visible, setVisible]);
 
 	return (<>
 		{/* Backdrop */}
 		{visible && (
 			<div
-				className="fixed inset-0 bg-black/30 z-40"
+				className="fixed inset-0 bg-black/30 z-40 touch-none"
 				onClick={() => setVisible(false)}
 			></div>
 		)}
@@ -67,23 +57,32 @@ const SettingsPanel = ({visible, setVisible} : SettingsPanelProps) => {
 					<ToggleSwitch
 						id="enableClock"
 						checked={clockProps.enableClock}
-						onChange={handleToggle(setClockProp, 'enableClock')}
+						onChange={() => setClockProp(prev => ({
+							...prev,
+							enableClock: !prev.enableClock
+						}))}
 					/>
 				</div>
 
-				{!!clockProps.enableClock && <>
+				{clockProps.enableClock && <>
 					<ToggleSwitch
 						id="useSeconds"
 						label="Show Seconds"
-						checked={!!clockProps.useSeconds}
-						onChange={handleToggle(setClockProp, 'useSeconds')}
+						checked={clockProps.useSeconds}
+						onChange={() => setClockProp(prev => ({
+							...prev,
+							useSeconds: !prev.useSeconds
+						}))}
 					/>
 
 					<ToggleSwitch
 						id="useAM"
 						label="Use 12H Clock"
-						checked={!!clockProps.useAM}
-						onChange={handleToggle(setClockProp, 'useAM')}
+						checked={clockProps.useAM}
+						onChange={() => setClockProp(prev => ({
+							...prev,
+							useAM: !prev.useAM
+						}))}
 					/>
 				</>}		
 			</div>
@@ -94,24 +93,33 @@ const SettingsPanel = ({visible, setVisible} : SettingsPanelProps) => {
 					<p>Search</p>
 					<ToggleSwitch
 						id="enableSearchBar"
-						checked={!!searchbarProps.enableSearchBar}
-						onChange={handleToggle(setSearchbarProp, 'enableSearchBar')}
+						checked={searchbarProps.enableSearchBar}
+						onChange={() => setSearchbarProp(prev => ({
+							...prev,
+							enableSearchBar: !prev.enableSearchBar
+						}))}
 					/>
 				</div>
 
-				{!!searchbarProps.enableSearchBar && <>
+				{searchbarProps.enableSearchBar && <>
 					<ToggleSwitch
 						id="autocomplete"
 						label="Enable Autocomplete"
-						checked={!!searchbarProps.autoComplete}
-						onChange={handleToggle(setSearchbarProp, 'autoComplete')}
+						checked={searchbarProps.autoComplete}
+						onChange={() => setSearchbarProp(prev => ({
+							...prev,
+							autoComplete: !prev.autoComplete
+						}))}
 					/>
 
 					<ToggleSwitch
 						id="autoFocus"
 						label="Autofocus on Load"
-						checked={!!searchbarProps.autoFocus}
-						onChange={handleToggle(setSearchbarProp, 'autoFocus')}
+						checked={searchbarProps.autoFocus}
+						onChange={() => setSearchbarProp(prev => ({
+							...prev,
+							autoFocus: !prev.autoFocus
+						}))}
 					/>
 
 					<div className="mt-3">
@@ -136,8 +144,11 @@ const SettingsPanel = ({visible, setVisible} : SettingsPanelProps) => {
 					<p>Shortcut Bar</p>
 					<ToggleSwitch
 						id="enableShortcuts"
-						checked={!!shortcutBarProps.enableShortcuts}
-						onChange={handleToggle(setShortcutBarProp, 'enableShortcuts')}
+						checked={shortcutBarProps.enableShortcuts}
+						onChange={() => setShortcutBarProp(prev => ({
+							...prev,
+							enableShortcuts: !prev.enableShortcuts
+						}))}
 					/>
 				</div>
 					
@@ -145,15 +156,21 @@ const SettingsPanel = ({visible, setVisible} : SettingsPanelProps) => {
 					<ToggleSwitch
 						id="enableEdit"
 						label="Edit Mode"
-						checked={!!shortcutBarProps.enableEdit}
-						onChange={handleToggle(setShortcutBarProp, 'enableEdit')}
+						checked={shortcutBarProps.enableEdit}
+						onChange={() => setShortcutBarProp(prev => ({
+							...prev,
+							enableEdit: !prev.enableEdit
+						}))}
 					/>
 
 					<ToggleSwitch
 						id="openInNewTab"
 						label="Open in New Tab"
-						checked={!!shortcutBarProps.openInNewTab}
-						onChange={handleToggle(setShortcutBarProp, 'openInNewTab')}
+						checked={shortcutBarProps.openInNewTab}
+						onChange={() => setShortcutBarProp(prev => ({
+							...prev,
+							openInNewTab: !prev.openInNewTab
+						}))}
 					/>
 				</>}		
 			</div>

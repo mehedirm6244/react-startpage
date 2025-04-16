@@ -1,6 +1,6 @@
 type ToggleButtonProps = {
 	id: string;
-	label?: any;
+	label?: string;
 	checked: boolean;
 	onChange: (checked: boolean) => void;
 };
