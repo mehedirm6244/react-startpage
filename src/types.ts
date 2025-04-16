@@ -8,7 +8,7 @@ export type SearchBarProps = {
 	enableSearchBar: boolean;
 	searchUrl: string;
 	autoComplete: boolean;
-	autoFocus: booleanl
+	autoFocus: boolean;
 };
 
 export type Shortcut = {

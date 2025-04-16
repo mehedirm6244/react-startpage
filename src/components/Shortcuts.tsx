@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
 import { SettingsContext } from '../SettingsContext';
+import { Shortcut } from '../types';
 
 import ShortcutEditor from './ShortcutEditor';
 import ShortcutItem from './ShortcutItem';
@@ -12,7 +13,7 @@ const ShortcutBar = () => {
 	}
 
 	const { shortcuts, setShortcut, shortcutBarProps } = context;
-	const { enableShortcuts, enableEditMode } = shortcutBarProps;
+	const { enableShortcuts, enableEdit } = shortcutBarProps;
 	const [showEditor, setShowEditor] = useState(false);
 
 	if (!enableShortcuts) {
@@ -22,12 +23,12 @@ const ShortcutBar = () => {
 	return (
 		<>
 			<div className="bg-neutral-700 shadow rounded-xl border border-white/10 p-2 flex flex-row gap-2 justify-center flex-wrap">
-				{shortcuts.map((shortcut, i) => (
+				{shortcuts.map((shortcut: Shortcut, i: number) => (
 					<div key={i} className="relative">
-						{ !!enableEditMode &&
+						{ !!enableEdit &&
 							<div
 								className="absolute z-10 -top-1 -right-1 bg-red-500 hover:bg-red-400 text-gray-100 p-1 rounded-full duration-100 active:scale-90"
-								onClick={() => setShortcut(prev => prev.filter((_, idx) => idx !== i))}
+								onClick={() => setShortcut((prev: Shortcut[]) => prev.filter((_:any, idx: number) => idx !== i))}
 							>
 								<Minus size={16} />
 							</div>
@@ -37,7 +38,7 @@ const ShortcutBar = () => {
 				))}
 
 				{/* Edit Button */}
-				{ !!enableEditMode && 
+				{ !!enableEdit && 
 					<div
 						onClick={() => setShowEditor(true)}
 						className="flex flex-col gap-1 items-center align-middle justify-center bg-neutral-600 w-12 h-12 m-4 rounded-full border border-white/5 hover:bg-neutral-500 duration-100 active:scale-90"

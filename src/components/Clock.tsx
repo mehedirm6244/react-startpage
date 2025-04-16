@@ -1,14 +1,13 @@
 import { useContext, useState, useEffect } from 'react';
-import { SettingsContext } from '../SettingsContext.tsx';
-import { ClockProps } from '../types.ts';
+import { SettingsContext } from '../SettingsContext';
 
-const getTime = ({useAM, useSeconds} : ClockProps) => {
+const getTime = ({useAM, useSeconds} : {useAM: boolean, useSeconds: boolean}) => {
 	const date = new Date();
 	let hrs = date.getHours();
 	let mins = date.getMinutes();
 	let secs = date.getSeconds();
 
-	let ampm: string;
+	let ampm = '';
 	if (!!useAM) {
 		ampm = (hrs >= 12? 'PM' : 'AM');
 		hrs %= 12;

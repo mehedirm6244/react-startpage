@@ -5,33 +5,44 @@ import {
 	initialSearchBarProps,
 	initialShortcuts,
 	initialShortcutBarProps
-} from './config.ts';
+} from './config';
 
 import {
 	ClockProps,
 	SearchBarProps,
 	Shortcut,
 	ShortcutBarProps
-} from './types.ts';
+} from './types';
 
-const loadFromLocalStorage = (key: string, fallback: T) => {
+type SettingsContextType = {
+	clockProps: ClockProps;
+	setClockProp: React.Dispatch<React.SetStateAction<ClockProps>>;
+	searchbarProps: SearchBarProps;
+	setSearchbarProp: React.Dispatch<React.SetStateAction<SearchBarProps>>;
+	shortcuts: Shortcut[];
+	setShortcut: React.Dispatch<React.SetStateAction<Shortcut[]>>;
+	shortcutBarProps: ShortcutBarProps;
+	setShortcutBarProp: React.Dispatch<React.SetStateAction<ShortcutBarProps>>;
+};
+
+function loadFromLocalStorage<T>(key: string, fallback: T) {
 	const item = localStorage.getItem(key);
 	return item ? JSON.parse(item) : fallback;
 }
 
-export const SettingsContext = createContext(null);
+export const SettingsContext = createContext<SettingsContextType | null>(null);
 
-export const SettingsProvider = ({ children }) => {
-	const [clockProps, setClockProp] = useState(
+export const SettingsProvider = ({children} : {children: React.ReactNode}) => {
+	const [clockProps, setClockProp] = useState<ClockProps>(() =>
 		loadFromLocalStorage('clockProps', initialClockProps));
 
-	const [searchbarProps, setSearchbarProp] = useState(
+	const [searchbarProps, setSearchbarProp] = useState<SearchBarProps>(() =>
 		loadFromLocalStorage('searchbarProps', initialSearchBarProps));
 
-	const [shortcuts, setShortcut] = useState(
+	const [shortcuts, setShortcut] = useState<Shortcut[]>(() =>
 		loadFromLocalStorage('shortcuts', initialShortcuts));
 
-	const [shortcutBarProps, setShortcutBarProp] = useState(
+	const [shortcutBarProps, setShortcutBarProp] = useState<ShortcutBarProps>(() =>
 		loadFromLocalStorage('shortcutBarProps', initialShortcutBarProps));
 
 	useEffect(() => {

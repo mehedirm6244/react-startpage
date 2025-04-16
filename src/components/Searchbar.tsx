@@ -23,7 +23,7 @@ const Searchbar = () => {
 			return faviconURL;
 		} catch {
 			console.warn(`${url} is not a valid URL`);
-			return null;
+			return '';
 		}
 	}
 

@@ -2,6 +2,8 @@ import { useContext, useEffect } from 'react';
 import { SettingsContext } from '../SettingsContext';
 import ToggleSwitch from './ToggleSwitch';
 
+import { SearchBarProps } from '../types';
+
 type SettingsPanelProps = {
 	visible: boolean,
 	setVisible: (visible : boolean) => void;
@@ -23,7 +25,7 @@ const SettingsPanel = ({visible, setVisible} : SettingsPanelProps) => {
 	} = context;
 
 	const handleToggle = (setter: Function, prop: string) => (value: boolean) => {
-		setter((prev: boolean) => ({
+		setter((prev: any) => ({
 			...prev,
 			[prop]: value ? 1 : 0
 		}))
@@ -64,7 +66,7 @@ const SettingsPanel = ({visible, setVisible} : SettingsPanelProps) => {
 					<p>Clock</p>
 					<ToggleSwitch
 						id="enableClock"
-						checked={!!clockProps.enableClock}
+						checked={clockProps.enableClock}
 						onChange={handleToggle(setClockProp, 'enableClock')}
 					/>
 				</div>
@@ -118,7 +120,7 @@ const SettingsPanel = ({visible, setVisible} : SettingsPanelProps) => {
 							id="searchUrl"
 							type="url"
 							value={searchbarProps.searchUrl}
-							onChange={e => setSearchbarProp(prev => ({
+							onChange={e => setSearchbarProp((prev: SearchBarProps) => ({
 								...prev,
 								searchUrl: e.target.value
 							}))}
@@ -141,10 +143,10 @@ const SettingsPanel = ({visible, setVisible} : SettingsPanelProps) => {
 					
 				{!!shortcutBarProps.enableShortcuts && <>
 					<ToggleSwitch
-						id="enableEditMode"
+						id="enableEdit"
 						label="Edit Mode"
-						checked={!!shortcutBarProps.enableEditMode}
-						onChange={handleToggle(setShortcutBarProp, 'enableEditMode')}
+						checked={!!shortcutBarProps.enableEdit}
+						onChange={handleToggle(setShortcutBarProp, 'enableEdit')}
 					/>
 
 					<ToggleSwitch

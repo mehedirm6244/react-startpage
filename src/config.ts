@@ -6,16 +6,16 @@ import {
 } from './types.ts';
 
 export const initialClockProps: ClockProps = {
-	enableClock: 1,
-	useSeconds: 1,
-	useAM: 0,
+	enableClock: true,
+	useSeconds: true,
+	useAM: false,
 };
 
-export const initialSearchBarProps: SearchbarProps = {
-	enableSearchBar: 1,
+export const initialSearchBarProps: SearchBarProps = {
+	enableSearchBar: true,
 	searchUrl: "https://www.google.com/search",
-	autoComplete: 0,
-	autoFocus: 1,
+	autoComplete: false,
+	autoFocus: true,
 };
 
 export const initialShortcuts: Shortcut[] = [
@@ -26,7 +26,7 @@ export const initialShortcuts: Shortcut[] = [
 ];
 
 export const initialShortcutBarProps: ShortcutBarProps = {
-	enableShortcuts: 1,
-	enableEditMode: 0,
-	openInNewTab: 1,
+	enableShortcuts: true,
+	enableEdit: false,
+	openInNewTab: true,
 };

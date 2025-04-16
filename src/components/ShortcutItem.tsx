@@ -8,7 +8,7 @@ const ShortcutItem = ({url, title} : Shortcut) => {
 		return null;
 	}
 	const { shortcutBarProps } = context;
-	const { enableEditMode, openInNewTab } = shortcutBarProps;
+	const { enableEdit, openInNewTab } = shortcutBarProps;
 
 	// Normalize URL
 	if (!/^https?:\/\//i.test(url)) {
@@ -26,7 +26,7 @@ const ShortcutItem = ({url, title} : Shortcut) => {
 		>
 			<div
 				className={`
-					flex flex-col gap-2 items-center align-middle justify-center bg-white/10 w-20 h-20 rounded-lg border border-white/5 hover:bg-white/20 duration-100 active:scale-90 ${!!enableEditMode ? 'animate-wiggle opacity-80' : 'animate-none'}
+					flex flex-col gap-2 items-center align-middle justify-center bg-white/10 w-20 h-20 rounded-lg border border-white/5 hover:bg-white/20 duration-100 active:scale-90 ${!!enableEdit ? 'animate-wiggle opacity-80' : 'animate-none'}
 					`}
 				>
 				<img src={favicon} className="h-8 w-8 rounded-full mt-1"/>

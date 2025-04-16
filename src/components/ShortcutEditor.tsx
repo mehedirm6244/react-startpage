@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 import { SettingsContext } from '../SettingsContext';
-import { X } from 'lucide-react';
+import { Shortcut } from '../types';
 
 type ShortcutEditorProps = {
 	showEditor: boolean;
@@ -24,7 +24,7 @@ const ShortcutEditor = ({ showEditor, setShowEditor }: ShortcutEditorProps) => {
 			return;
 		}
 
-		setShortcut(prev => [...prev, { title, url }]);
+		setShortcut((prev: Shortcut[]) => [...prev, { title, url }]);
 		setTitle('');
 		setUrl('');
 		setShowEditor(false);
