@@ -3,7 +3,7 @@
 A minimal and customizable startpage built with React and Tailwind - designed to help you focus on what actually matters. 
 Sometimes, less is *actually* more.
 
-Try it out live here: [link](https://mehedirm6244.github.io/react-startpage)
+Try it out live here: [link](https://react-startpage-mu.vercel.app/)
 
 ![image](https://github.com/user-attachments/assets/1ff67444-fcca-4071-a2fb-0e2770cf08e4)
 
