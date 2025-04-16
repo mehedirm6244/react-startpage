@@ -8,7 +8,7 @@ type ShortcutEditorProps = {
 };
 
 const ShortcutEditor = ({ showEditor, setShowEditor }: ShortcutEditorProps) => {
-	const context = useContext(SettingsContext);
+	const context = useContext(SettingsContext)!;
 
 	const { setShortcut } = context;
 

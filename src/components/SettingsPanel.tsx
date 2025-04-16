@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { SettingsContext } from '../SettingsContext';
 import ToggleSwitch from './ToggleSwitch';
 
-import { SearchBarProps } from '../types';
+import {  ClockProps, SearchBarProps, ShortcutBarProps } from '../types';
 
 type SettingsPanelProps = {
 	visible: boolean,
@@ -10,7 +10,7 @@ type SettingsPanelProps = {
 };
 
 const SettingsPanel = ({visible, setVisible} : SettingsPanelProps) => {
-	const context = useContext(SettingsContext);
+	const context = useContext(SettingsContext)!;
 
 	const {
 		clockProps,
@@ -57,7 +57,7 @@ const SettingsPanel = ({visible, setVisible} : SettingsPanelProps) => {
 					<ToggleSwitch
 						id="enableClock"
 						checked={clockProps.enableClock}
-						onChange={() => setClockProp(prev => ({
+						onChange={() => setClockProp((prev: ClockProps) => ({
 							...prev,
 							enableClock: !prev.enableClock
 						}))}
@@ -69,7 +69,7 @@ const SettingsPanel = ({visible, setVisible} : SettingsPanelProps) => {
 						id="useSeconds"
 						label="Show Seconds"
 						checked={clockProps.useSeconds}
-						onChange={() => setClockProp(prev => ({
+						onChange={() => setClockProp((prev: ClockProps) => ({
 							...prev,
 							useSeconds: !prev.useSeconds
 						}))}
@@ -79,7 +79,7 @@ const SettingsPanel = ({visible, setVisible} : SettingsPanelProps) => {
 						id="useAM"
 						label="Use 12H Clock"
 						checked={clockProps.useAM}
-						onChange={() => setClockProp(prev => ({
+						onChange={() => setClockProp((prev: ClockProps) => ({
 							...prev,
 							useAM: !prev.useAM
 						}))}
@@ -94,7 +94,7 @@ const SettingsPanel = ({visible, setVisible} : SettingsPanelProps) => {
 					<ToggleSwitch
 						id="enableSearchBar"
 						checked={searchbarProps.enableSearchBar}
-						onChange={() => setSearchbarProp(prev => ({
+						onChange={() => setSearchbarProp((prev: SearchBarProps) => ({
 							...prev,
 							enableSearchBar: !prev.enableSearchBar
 						}))}
@@ -106,7 +106,7 @@ const SettingsPanel = ({visible, setVisible} : SettingsPanelProps) => {
 						id="autocomplete"
 						label="Enable Autocomplete"
 						checked={searchbarProps.autoComplete}
-						onChange={() => setSearchbarProp(prev => ({
+						onChange={() => setSearchbarProp((prev: SearchBarProps) => ({
 							...prev,
 							autoComplete: !prev.autoComplete
 						}))}
@@ -116,7 +116,7 @@ const SettingsPanel = ({visible, setVisible} : SettingsPanelProps) => {
 						id="autoFocus"
 						label="Autofocus on Load"
 						checked={searchbarProps.autoFocus}
-						onChange={() => setSearchbarProp(prev => ({
+						onChange={() => setSearchbarProp((prev: SearchBarProps) => ({
 							...prev,
 							autoFocus: !prev.autoFocus
 						}))}
@@ -145,19 +145,19 @@ const SettingsPanel = ({visible, setVisible} : SettingsPanelProps) => {
 					<ToggleSwitch
 						id="enableShortcuts"
 						checked={shortcutBarProps.enableShortcuts}
-						onChange={() => setShortcutBarProp(prev => ({
+						onChange={() => setShortcutBarProp((prev: ShortcutBarProps) => ({
 							...prev,
 							enableShortcuts: !prev.enableShortcuts
 						}))}
 					/>
 				</div>
 					
-				{!!shortcutBarProps.enableShortcuts && <>
+				{shortcutBarProps.enableShortcuts && <>
 					<ToggleSwitch
 						id="enableEdit"
 						label="Edit Mode"
 						checked={shortcutBarProps.enableEdit}
-						onChange={() => setShortcutBarProp(prev => ({
+						onChange={() => setShortcutBarProp((prev: ShortcutBarProps) => ({
 							...prev,
 							enableEdit: !prev.enableEdit
 						}))}
@@ -167,7 +167,7 @@ const SettingsPanel = ({visible, setVisible} : SettingsPanelProps) => {
 						id="openInNewTab"
 						label="Open in New Tab"
 						checked={shortcutBarProps.openInNewTab}
-						onChange={() => setShortcutBarProp(prev => ({
+						onChange={() => setShortcutBarProp((prev: ShortcutBarProps) => ({
 							...prev,
 							openInNewTab: !prev.openInNewTab
 						}))}

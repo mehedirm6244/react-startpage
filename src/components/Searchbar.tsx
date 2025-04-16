@@ -3,7 +3,7 @@ import { Search } from 'lucide-react';
 import { SettingsContext } from '../SettingsContext';
 
 const Searchbar = () => {
-	const context = useContext(SettingsContext);
+	const context = useContext(SettingsContext)!;
 
 	const { searchbarProps } = context;
 	const {

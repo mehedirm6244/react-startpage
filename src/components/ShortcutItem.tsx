@@ -3,7 +3,7 @@ import { Shortcut } from '../types';
 import { SettingsContext } from '../SettingsContext';
 
 const ShortcutItem = ({url, title} : Shortcut) => {
-	const context = useContext(SettingsContext);
+	const context = useContext(SettingsContext)!;
 
 	const { shortcutBarProps } = context;
 	const { enableEdit, openInNewTab } = shortcutBarProps;

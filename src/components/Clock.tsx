@@ -32,7 +32,7 @@ const getTime = ({useAM, useSeconds} : {useAM: boolean, useSeconds: boolean}) =>
 }
 
 const Clock = () => {
-	const context = useContext(SettingsContext);
+	const context = useContext(SettingsContext)!;
 	const [time, setTime] = useState('');
 
 	const { clockProps } = context;

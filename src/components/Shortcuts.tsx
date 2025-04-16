@@ -7,7 +7,7 @@ import ShortcutEditor from './ShortcutEditor';
 import ShortcutItem from './ShortcutItem';
 
 const ShortcutBar = () => {
-	const context = useContext(SettingsContext);
+	const context = useContext(SettingsContext)!;
 
 	const { shortcuts, setShortcut, shortcutBarProps } = context;
 	const { enableShortcuts, enableEdit } = shortcutBarProps;
